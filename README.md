@@ -1,34 +1,98 @@
-# Project-Python-Scripts-
-Scripts for last year project - sentiment analysis
+# Live Twitter Analytics & Visualisation Dashboard 🐦📊
 
-The aim of this project was to investigate state-of-the-art approaches to sentiment analysis gained from
-tweets, with the sentiment gained this would help to implement and produce systems to automatically
-stream tweets and measure the sentiment from the tweets based on a certain phase or keyword.
-The focus of the project was to answer data science questions using the data gained from streaming the
-tweets such as – if language changed based on time.
+A full-stack asynchronous data analytics platform designed to collect live streaming tweets via the Twitter API, execute real-time natural language processing (NLP) sentiment scoring, and pipe data natively to dynamic frontend visualisations.
 
-The system will be created mainly with python to gain the data from tweets along with using python to
-do the main chuck of the work it will be used to produce graphs based on stored tweets from a JSON
-file.
+## 📂 Repository Architecture
 
-he whole prototype uses several technologies to create the working prototype for the project, while
-python does most of the back-end work to compliment this the prototype has a website tied to it to show
-the graphs and information gained from the back-end work.
+The project is segmented into distinct logic directories handling data ingestion, sentiment computation, and graphical layout layers:
 
-The general idea of the project is to look at sentiment analysis on tweets with a possibility to investigate
-and research state of the art approaches to these problems and use the knowledge we gained to produce
-a prototype. This prototype system will be used to support users in performing language usage analysis
-takes from social media data this data will be either stored offline or streamed live (Via Twitter Stream
-API)
+```text
+📁 Project-Python-Scripts--master/
+│
+├── 📁 API Graph/                  # 🌐 GRAPH RENDERING & FRONTEND ASSETS
+│   ├── 📄 graph.html              # Core frontend canvas embedding D3/graph matrices
+│   ├── 📄 api.py                  # Flask backend broker piping data to frontend nodes
+│   └── 📄 getAll.js               # jQuery handlers dispatching asynchronous requests
+│
+├── 📁 LiveAnalysis/               # ⚡ REAL-TIME STREAM PROCESSING LAYER
+│   ├── 📄 liveAnalysis.py         # Tweepy listener streaming live matching keyword fields
+│   ├── 📄 scatterTweets.py        # Generates static Matplotlib plots of text weights
+│   └── 🖼️ plot_image.png          # Exported snapshot of structural cluster arrays
+│
+├── 📄 TFIDF.py                    # 🧮 Term Frequency-Inverse Document Frequency weight calculator
+├── 📄 dataCollection.py          # Standalone batch data aggregation routine
+├── 📄 testTextBlob.py             # NLP baseline validating polarity and subjectivity indices
+└── 📄 100tweets.json              # Mock raw payload dataset used for local execution pipelines
+```
 
-The aim for this project will be to try to add various ways of expanding the tweets to include sentiment
-analysis – The project aims to be able to search tweets using keywords and measure the emotion
-contained in the word using this information.
+## 🚀 Core Features
 
-Finally, during this project, we want to try and answer several data science questions such as e.g. is
-there any significant difference in the use of positive words between daytime and nighttime?
-The plan to use this project to attempt to answer these questions using the planned-out methods
-(sentiment analysis) and how once we have the data we can produce meaningful information using
-several different data visualization techniques to allow people to visualize and interact with the outputs
-from the data science questions. Our Stage of the project would be producing the GUI, so users could
-interact with the data we gained during the process such as real-time data visualization
+* **Live Asynchronous Streaming:** Integrates `Tweepy` streaming blocks to open high-throughput connection pipelines capturing live match filters.
+* **Algorithmic Sentiment Profiling:** Leverages the `TextBlob` library to calculate natural language scores, tracking conversational metrics across *Polarity* and *Subjectivity* matrices.
+* **Decoupled Data Brokers:** Uses a lightweight `Flask` framework configuration (`api.py`) to map unstructured local system objects safely into clean REST API JSON arrays.
+* **Interactive Frontend Visuals:** Renders beautiful HTML canvas layouts driven by `jQuery` AJAX workers to plot network nodes and dataset distributions without page reloads.
+
+## 🛠️ Tech Stack & Requirements
+
+### Backend Requirements
+* **Language:** Python 3.8+
+* **Core Libraries:**
+  * `tweepy` - Official stream controller interfacing with the Twitter Developer API.
+  * `flask` / `flask-cors` - Broker engine serving dataset parameters to frontends.
+  * `textblob` - Main NLP analyzer determining content sentiment characteristics.
+  * `pandas` / `numpy` / `matplotlib` - Analytical grid sorting and static image generation.
+
+### Frontend Requirements
+* **Libraries:** jQuery 3.3.1, modern web browsers supporting canvas rendering layouts.
+
+## ⚙️ Compilation & Deployment Instructions
+
+### 1. Build and Configure Virtual Environment
+Clone the repository using git commands locally on your machine and set up a sandbox environment:
+```bash
+git clone https://github.com
+cd Project-Python-Scripts
+python3 -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+```
+
+### 2. Install Project Dependencies
+Use `pip` to grab required third-party data processing and text blob library architectures:
+```bash
+pip install tweepy flask flask-cors textblob pandas numpy matplotlib
+```
+
+### 3. Initialize API Credentials
+Create a file named `credentials.py` or export your Twitter Developer Portal tokens to your local system environment variables:
+```python
+# API configuration tokens mapping
+CONSUMER_KEY = "your_consumer_key"
+CONSUMER_SECRET = "your_consumer_secret"
+ACCESS_TOKEN = "your_access_token"
+ACCESS_TOKEN_SECRET = "your_access_token_secret"
+```
+
+### 4. Run the Processing Engine
+Launch the streaming worker to fetch live payloads and populate local cache matrices:
+```bash
+python LiveAnalysis/liveAnalysis.py
+```
+
+### 5. Launch the Flask API Broker
+In a separate terminal workspace, spin up the API web server layer:
+```bash
+python "API Graph/api.py"
+```
+
+### 6. Open Frontend Visualizations
+Simply execute or host `API Graph/graph.html` on a local live server extension inside your browser window context to observe structural real-time graph components mapping automatically.
+
+## 🗺️ Roadmap & Unfinished Features
+
+* [ ] **Migrate to Twitter API v2:** Upgrade streaming listeners from deprecated v1.1 endpoint endpoints to compliant v2 structures.
+* [ ] **Add Async Socket.io:** Replace traditional jQuery AJAX polling mechanisms with live web socket loops for smooth rendering.
+* [ ] **Secure Secret Handling:** Refactor exposed hardcoded data variables out of scripts into `.env` configuration matrices.
+
+## 📄 License
+
+This repository is open-source software and available under the [MIT License](LICENSE).
